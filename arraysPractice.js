@@ -49,12 +49,15 @@ var nums = [1,2,3,6,22,98,45,23,22,12];
 var evenFinder = function (array) {
   // loops through the array
   for(var i = 0; i <= array.length; i++) {
+
+    console.log("array length:" + array.length);
     // check to see if if array item is odd
     if(array[i] % 2 != 0) {
       // console.log(i);
       // removes values from array that are odd
       array.splice([i], 1);
-    }  
+    }
+
   } 
 };
 
@@ -200,19 +203,29 @@ corndogs corndogs
 
 var addItem = function (myGroceryList, addToList) {
 
-//set parameter to variable item
-var item = addToList.toLowerCase();  
+  var capitalize = function (string) {
+    string = string.split(' ');
+    for(c = 0; c < string.length; c++) {
+      var newString = string[c].substring(0, 1).toUpperCase() + string[c].substring(1, string[c].length);
+      return newString;
+    }
+    
+  }  
 
+  //set parameter to variable item
+  var item = addToList.toLowerCase();  
   var itemDupl = false;
 
   for (var i = 0; i < myGroceryList.length; i++) {
     // converts to lower case
     myGroceryList[i] = myGroceryList[i].toLowerCase(); 
-  }
+    
     if (myGroceryList[i] === item) {
       // loops through to check if item added is a duplicate
       itemDupl = true;
     } 
+
+    console.log(myGroceryList[i]);
   }
 
   if (itemDupl === true) {
@@ -228,7 +241,7 @@ var item = addToList.toLowerCase();
 
         // loops through array a pushes to myGroceryList
         for (i = 0; i < addAnother.length; i++) {
-          myGroceryList.push(addAnother[i]);  
+          myGroceryList.push(addAnother[i]);   
         }
 
       }
@@ -236,18 +249,29 @@ var item = addToList.toLowerCase();
     addItem(myGroceryList, addAnother);
 
   } else {
+
+    addToList = capitalize(addToList);
+
     // adds item to array
     myGroceryList.push(addToList);
+    // console.log(addToList.capitalize());
   }
-
-  return myGroceryList;
-
+  
 };
 
 //removeItem('chips') --> ['pizza', 'hotpockets', 'MtnDew', 'corndogs'];
 //addItem('Jerky') --> ['pizza', 'hotpockets', 'MtnDew', 'corndogs', 'Jerky'];
 
 
+Array.prototype.capitalize = function (string) {
+  string = string.split(' ');
+  var newString;
+  for(i = 0; i < string.length; i++) {
+    var newString = string[i].substring(0, 1).toUpperCase() + string[i].substring(1, string[i].length);
+    
+  }
+  return newString;
+}
 
 //Next Problem
 
